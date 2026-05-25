@@ -9,23 +9,33 @@ Shader "Blinn-Phong"
         _n ("n", float) = 1
 
         [Toggle] _EnableDirLight ("Enable Directional Light", Float) = 1
-        [NoScaleOffset] _DirLightDirection ("Directional Light Direction", Vector) = (0, -1, 0, 0)
-        [NoScaleOffset] _DirLightColor ("Directional Light Color", Color) = (1, 1, 1, 1)
+        _DirLightDirection ("Directional Light Direction", Vector) = (0, -1, 0, 0)
+        [HDR] _DirLightColor ("Directional Light Color", Color) = (1, 1, 1, 1)
 
         [Toggle] _EnablePointLight ("Enable Point Light", Float) = 1
-        [NoScaleOffset] _PointLightPosition ("Point Light Position", Vector) = (0, 2, 0, 1)
-        [NoScaleOffset] _PointLightColor ("Point Light Color", Color) = (1, 1, 1, 1)
+        _PointLightPosition ("Point Light Position", Vector) = (0, 2, 0, 1)
+        [HDR] _PointLightColor ("Point Light Color", Color) = (1, 1, 1, 1)
 
         [Toggle] _EnableSpotLight ("Enable Spot Light", Float) = 1
-        [NoScaleOffset] _SpotLightPosition ("Spot Light Position", Vector) = (0, 3, 0, 1)
-        [NoScaleOffset] _SpotLightDirection ("Spot Light Direction", Vector) = (0, -1, 0, 0)
-        [NoScaleOffset] _SpotLightColor ("Spot Light Color", Color) = (1, 1, 1, 1)
+        _SpotLightPosition ("Spot Light Position", Vector) = (0, 3, 0, 1)
+        _SpotLightDirection ("Spot Light Direction", Vector) = (0, -1, 0, 0)
+        [HDR] _SpotLightColor ("Spot Light Color", Color) = (1, 1, 1, 1)
         _Apertura("Apertura", Range(0.0, 90)) = 30.0
+
+        [Header(Texturas)]
+        [Toggle(USE_ALBEDO_MAP)] _UseAlbedoMap("Use 2D Texture", Float) = 0
+        _MainTex("Base Color", 2D) = "white" {}
+
+        [Toggle(USE_NORMAL_MAP)] _UseNormalMap("Use Normal Map", Float) = 0
+        _NormalMap("Normal Map", 2D) = "bump" {}
+
+        [Toggle(USE_PROCEDURAL)] _UseProcedural("Use Procedural Texture", Float) = 0
     }
 
     SubShader
     {
-        //Tags { "RenderType"="Opaque" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
             CGPROGRAM
@@ -37,6 +47,7 @@ Shader "Blinn-Phong"
             {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
+                float2 uv : TEXCOORD0;
             };
 
             struct v2f
@@ -44,6 +55,7 @@ Shader "Blinn-Phong"
                 float4 pos : SV_POSITION;
                 float3 worldNormal : NORMAL;
                 float3 worldPos : TEXCOORD1;
+                float2 uv : TEXCOORD0;
             };
 
             // Variables globales mapeadas desde Properties
@@ -66,8 +78,10 @@ Shader "Blinn-Phong"
             float _EnablePointLight;
             float _EnableSpotLight;
 
+            sampler2D _MainTex;
+
             // Blinn-Phong para luz direccional
-            float3 CalcularDireccional(float3 N, float3 V, float3 lightDir, float3 lightColor)
+            float3 CalcularDireccional(float3 N, float3 V, float3 lightDir, float3 lightColor, float3 baseColor)
             {
                 float3 L = normalize(-lightDir);
                 float3 H = normalize(L + V);
@@ -75,14 +89,14 @@ Shader "Blinn-Phong"
                 float NdotL = max(0.0, dot(N, L));
                 float HdotN = max(0.0, dot(H, N));
 
-                float3 diffuse = _Kd.rgb * NdotL;
+                float3 diffuse = baseColor * NdotL;
                 float3 specular = _Ks.rgb * pow(HdotN, _n);
 
                 return lightColor * (diffuse + specular);
             }
 
             // Blinn-Phong para luz puntual
-            float3 CalcularPuntual(float3 N, float3 V, float3 worldPos, float3 lightPos, float3 lightColor)
+            float3 CalcularPuntual(float3 N, float3 V, float3 worldPos, float3 lightPos, float3 lightColor, float3 baseColor)
             {
                 float3 toPoint = lightPos - worldPos;
                 float dist = length(toPoint);
@@ -93,14 +107,14 @@ Shader "Blinn-Phong"
                 float HdotN = max(0.0, dot(H, N));
                 float attenFactor = 1.0 / dist;
                 
-                float3 diffuse = _Kd.rgb * NdotL;
+                float3 diffuse = baseColor * NdotL;
                 float3 specular = _Ks.rgb * pow(HdotN, _n);
                 
                 return lightColor * attenFactor * (diffuse + specular);
             }
 
             // Blinn-Phong para luz spot
-            float3 CalcularSpot(float3 N, float3 V, float3 worldPos, float3 lightPos, float3 lightDir, float3 lightColor, float apertura)
+            float3 CalcularSpot(float3 N, float3 V, float3 worldPos, float3 lightPos, float3 lightDir, float3 lightColor, float apertura, float3 baseColor)
             {
                 float3 toPoint = lightPos - worldPos;
                 float dist = length(toPoint);
@@ -117,7 +131,7 @@ Shader "Blinn-Phong"
                 float NdotL = max(0.0, dot(N, L));
                 float HdotN = max(0.0, dot(H, N));
                 
-                float3 diffuse = _Kd.rgb * NdotL;
+                float3 diffuse = baseColor * NdotL;
                 float3 specular = _Ks.rgb * pow(HdotN, _n);
                 
                 return lightColor * attenFactor * spotIntensity * (diffuse + specular);
@@ -139,15 +153,20 @@ Shader "Blinn-Phong"
 
                 // Término ambiente general
                 float3 contribAmbient = _AmbientLight.rgb * _Ka.rgb;
+                float3 colorBase = _Kd.rgb;
+
+                #if USE_ALBEDO_MAP
+                    colorBase = tex2D(_MainTex, i.uv).rgb;
+                #endif
 
                 // Contribuciones individuales de cada luz (difuso + especular)
-                float3 contribDir = CalcularDireccional(N, V, _DirLightDirection.xyz, _DirLightColor.rgb) * _EnableDirLight;
-                float3 contribPoint = CalcularPuntual(N, V, i.worldPos, _PointLightPosition.xyz, _PointLightColor.rgb) * _EnablePointLight;
-                float3 contribSpot = CalcularSpot(N, V, i.worldPos, _SpotLightPosition.xyz, _SpotLightDirection.xyz, _SpotLightColor.rgb, _Apertura) * _EnableSpotLight;
+                float3 contribDir = CalcularDireccional(N, V, _DirLightDirection.xyz, _DirLightColor.rgb, colorBase) * _EnableDirLight;
+                float3 contribPoint = CalcularPuntual(N, V, i.worldPos, _PointLightPosition.xyz, _PointLightColor.rgb, colorBase) * _EnablePointLight;
+                float3 contribSpot = CalcularSpot(N, V, i.worldPos, _SpotLightPosition.xyz, _SpotLightDirection.xyz, _SpotLightColor.rgb, _Apertura, colorBase) * _EnableSpotLight;
                 
                 float3 finalColor = contribAmbient + contribDir + contribPoint + contribSpot;
 
-                return fixed4(finalColor, 1.0);
+                return fixed4(finalColor, _Kd.a);
             }
             ENDCG
         }
