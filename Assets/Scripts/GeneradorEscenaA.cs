@@ -26,24 +26,22 @@ public class GeneradorEscenaA : MonoBehaviour
 
     void ConstruirEscenaProcedural()
     {
-        // Calculamos las dimensiones totales de la grilla para poder centrar los estantes y la pared
         float anchoTotal = (columnas - 1) * espaciadoX;
         float altoTotal = (filas - 1) * espaciadoY;
         Vector3 centroGrilla = new Vector3(anchoTotal / 2.0f, altoTotal / 2.0f, 0);
 
-        // Generación de la pared del fondo
+        ControladorCamara controlador = FindObjectOfType<ControladorCamara>();
+        CamaraOrbital camara = Camera.main.GetComponent<CamaraOrbital>();
+
         if (prefabPared != null)
         {
             Vector3 posPared = new Vector3(centroGrilla.x, centroGrilla.y + 1.0f, 0.6f);            
-            
             GameObject pared = Instantiate(prefabPared, posPared, Quaternion.Euler(-90, 0, 0));
             pared.name = "Pared_Fondo";
             pared.transform.SetParent(this.transform);
-
             pared.transform.localScale = new Vector3((anchoTotal + espaciadoX) * 0.1f, 1.0f, (altoTotal + espaciadoY) * 0.12f);
         }
 
-        // Generación de estantes y teteras
         for (int fila = 0; fila < filas; fila++)
         {
             float alturaActual = fila * espaciadoY;
@@ -54,11 +52,9 @@ public class GeneradorEscenaA : MonoBehaviour
                 GameObject estante = Instantiate(prefabEstante, posEstante, Quaternion.identity);
                 estante.name = $"Estante_Fila_{fila}";
                 estante.transform.SetParent(this.transform);
-
                 estante.transform.localScale = new Vector3(anchoTotal + espaciadoX, grosorEstante, profundidadEstante);
             }
 
-            // Crear las teteras sobre este estante
             for (int col = 0; col < columnas; col++)
             {
                 Vector3 posTetera = new Vector3(col * espaciadoX, alturaActual + offsetTeteraY, 0);
@@ -67,7 +63,23 @@ public class GeneradorEscenaA : MonoBehaviour
                 nuevaTetera.transform.localScale = new Vector3(escalaTetera, escalaTetera, escalaTetera);
                 nuevaTetera.name = $"Tetera_Fila{fila}_Col{col}";
                 nuevaTetera.transform.SetParent(this.transform);
+
+                if (controlador != null)
+                {
+                    controlador.teteras.Add(nuevaTetera.transform.position);
+                }
             }
+        }
+
+        if (camara != null)
+        {
+            camara.CambiarObjetivo(centroGrilla, 15f); 
+        }
+
+        if (controlador != null)
+        {
+            controlador.centroEscena = centroGrilla;
+            controlador.camaraOrbital = camara; 
         }
     }
 }
