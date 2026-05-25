@@ -13,9 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - _ENABLEDIRLIGHT_ON
   - _ENABLEPOINTLIGHT_ON
-  - _ENABLESPOTLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -74,9 +72,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableDirLight: 1
+    - _EnableDirLight: 0
     - _EnablePointLight: 1
-    - _EnableSpotLight: 1
+    - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -103,7 +101,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _PointLightPosition: {r: 0, g: 2, b: 0, a: 1}
+    - _PointLightPosition: {r: 6, g: 2, b: -1.5, a: 1}
     - _SpotLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpotLightDirection: {r: 0, g: -1, b: 0, a: 0}
     - _SpotLightPosition: {r: 0, g: 3, b: 0, a: 1}
