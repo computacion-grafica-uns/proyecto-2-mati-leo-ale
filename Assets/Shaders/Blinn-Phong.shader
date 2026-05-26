@@ -204,9 +204,15 @@ Shader "Blinn-Phong"
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.uv = v.uv;
+
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                o.worldTangent = UnityObjectToWorldDir(v.tangent.xyz);
+
+                float tangentSign = v.tangent.w * unity_WorldTransformParams.w;
+                o.worldBitangent = cross(o.worldNormal, o.worldTangent) * tangentSign;
+
                 return o;
             }
 
