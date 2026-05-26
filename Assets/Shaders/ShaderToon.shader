@@ -100,7 +100,6 @@ Shader "ShaderToon"
             #pragma vertex vert
             #pragma fragment frag
             
-            // Declaramos las keywords de las texturas
             #pragma shader_feature USE_ALBEDO_MAP
             #pragma shader_feature USE_NORMAL_MAP
             #pragma shader_feature USE_PROCEDURAL
@@ -206,7 +205,7 @@ Shader "ShaderToon"
                 return AplicarEstiloToon(NdotL, luzAtenuada, baseColor, V, L, N);
             }
 
-            // Misma textura procedural que en Cook-Torrance
+            
             float3 GenerarTexturaProcedural(float3 worldPos)
             {
                 float3 color1 = float3(0.1, 0.6, 0.5); 
@@ -240,16 +239,21 @@ Shader "ShaderToon"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // 1. Resolvemos el Color Base según las casillas del Inspector
+                
                 float3 baseColor = _ColorBase.rgb;
+                
+                
+                float alphaFinal = _ColorBase.a; 
 
                 #if USE_ALBEDO_MAP
-                    baseColor = tex2D(_MainTex, i.uv).rgb;
+                    float4 colorTextura = tex2D(_MainTex, i.uv);
+                    baseColor = colorTextura.rgb;
+                    alphaFinal *= colorTextura.a; 
                 #elif USE_PROCEDURAL
                     baseColor = GenerarTexturaProcedural(i.worldPos.xyz);
                 #endif
 
-                // 2. Resolvemos la Normal
+                
                 float3 N = normalize(i.worldNormal);
 
                 #if USE_NORMAL_MAP
@@ -270,8 +274,8 @@ Shader "ShaderToon"
                 
                 float3 finalColor = contribAmbient + contribDir + contribPoint + contribSpot;
 
-                // Devolvemos el color calculado + la transparencia (Alpha) original
-                return fixed4(finalColor, _ColorBase.a);
+                // Devolvemos el color calculado + la transparencia final calculada arriba
+                return fixed4(finalColor, alphaFinal);
             }
             ENDCG
         }
