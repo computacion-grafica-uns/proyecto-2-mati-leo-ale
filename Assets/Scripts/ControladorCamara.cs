@@ -5,7 +5,7 @@ public class ControladorCamara : MonoBehaviour
 {
     public CamaraOrbital camaraOrbital;
     public Vector3 centroEscena;
-    public List<Vector3> teteras = new List<Vector3>();
+    public List<Transform> teteras = new List<Transform>();
     private int indiceActual = -1; 
 
     void Update()
@@ -16,14 +16,14 @@ public class ControladorCamara : MonoBehaviour
         {
             indiceActual++;
             if (indiceActual >= teteras.Count) indiceActual = 0; 
-            camaraOrbital.CambiarObjetivo(teteras[indiceActual], 4f);
+            camaraOrbital.CambiarObjetivo(teteras[indiceActual].position, 4f);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             indiceActual--;
             if (indiceActual < 0) indiceActual = teteras.Count - 1; 
-            camaraOrbital.CambiarObjetivo(teteras[indiceActual], 4f);
+            camaraOrbital.CambiarObjetivo(teteras[indiceActual].position, 4f);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

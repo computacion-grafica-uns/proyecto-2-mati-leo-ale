@@ -66,7 +66,7 @@ public class GeneradorEscenaA : MonoBehaviour
 
                 if (controlador != null)
                 {
-                    controlador.teteras.Add(nuevaTetera.transform.position);
+                    //controlador.teteras.Add(nuevaTetera.transform.position);
                 }
             }
         }

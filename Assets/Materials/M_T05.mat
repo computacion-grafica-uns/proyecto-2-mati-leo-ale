@@ -14,7 +14,7 @@ Material:
   m_ValidKeywords:
   - USE_NORMAL_MAP
   m_InvalidKeywords:
-  - _ENABLESPOTLIGHT_ON
+  - _ENABLEDIRLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,7 +67,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Aperture: 27.8
+    - _Aperture: 0
     - _BrilloMetalico: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -94,16 +94,16 @@ Material:
     - _UseProcedural: 0
     - _ZWrite: 1
     m_Colors:
-    - _AmbientLight: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _AmbientLight: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorBase: {r: 0.36305305, g: 0.3537736, b: 1, a: 1}
     - _DirLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _DirLightDirection: {r: -1.34, g: -0.96, b: 1.12, a: 0}
+    - _DirLightDirection: {r: 0, g: -1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PointLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _PointLightPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SpotLightDirection: {r: 0, g: -0.87, b: 1, a: 0}
-    - _SpotLightPosition: {r: 0, g: 1.72, b: -1.39, a: 0}
+    - _SpotLightColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SpotLightDirection: {r: 0, g: 0, b: 0, a: 0}
+    - _SpotLightPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
