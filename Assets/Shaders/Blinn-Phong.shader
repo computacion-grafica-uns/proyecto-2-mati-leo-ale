@@ -20,7 +20,7 @@ Shader "Blinn-Phong"
         _SpotLightPosition ("Spot Light Position", Vector) = (0, 3, 0, 1)
         _SpotLightDirection ("Spot Light Direction", Vector) = (0, -1, 0, 0)
         [HDR] _SpotLightColor ("Spot Light Color", Color) = (1, 1, 1, 1)
-        _Apertura("Apertura", Range(0.0, 90)) = 30.0
+        _Aperture("Apertura", Range(0.0, 90)) = 30.0
 
         [Header(Texturas)]
         [Toggle(USE_ALBEDO_MAP)] _UseAlbedoMap("Use 2D Texture", Float) = 0

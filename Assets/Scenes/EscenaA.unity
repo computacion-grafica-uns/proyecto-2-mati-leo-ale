@@ -229,7 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camaraOrbital: {fileID: 0}
-  centroEscena: {fileID: 0}
+  centroEscena: {x: 0, y: 0, z: 0}
+  teteras: []
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,12 +243,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca1e23010c19b94dbc600f1d3ee7a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetivo: {fileID: 0}
+  objetivo: {x: 0, y: 0, z: 0}
   distancia: 12
   minDistancia: 2
   maxDistancia: 25
   sensibilidadRotacion: 3
   sensibilidadZoom: 10
+--- !u!1 &2004877314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2004877316}
+  - component: {fileID: 2004877315}
+  m_Layer: 0
+  m_Name: LuzManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2004877315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004877314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f65f108c36be2459a2752996e1d7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materiales:
+  - {fileID: 2100000, guid: f1382d336f289ee44be81de6ff022d5d, type: 2}
+  - {fileID: 2100000, guid: fa92ba43ed430df4fa09688ec8904088, type: 2}
+  - {fileID: 2100000, guid: dc85deecaca7ad549b0da144fe0be478, type: 2}
+  - {fileID: 2100000, guid: c62f9891faf409249ac0e03f6b4e7f00, type: 2}
+  - {fileID: 2100000, guid: 52ccd1632cf68f1419b1500cd3733717, type: 2}
+  - {fileID: 2100000, guid: bfa7a183380a0ed4e90ee8f2b3cb39a7, type: 2}
+  - {fileID: 2100000, guid: f62552b2647224a4ea428f9aa16976cb, type: 2}
+  - {fileID: 2100000, guid: fa8eb37f9b064b84496fef8e18ece868, type: 2}
+  - {fileID: 2100000, guid: 5071789e27d9df54491f8225471ca27e, type: 2}
+  - {fileID: 2100000, guid: 570d4187353e0e046bdaee6f5b093d91, type: 2}
+  - {fileID: 2100000, guid: 9895c3f2144f681428d2ae1e64c87d17, type: 2}
+  - {fileID: 2100000, guid: 5083f398ba31dd044839f7c4a0183fd2, type: 2}
+  - {fileID: 2100000, guid: eaa9cab88286999428aabab6c68063fd, type: 2}
+  - {fileID: 2100000, guid: 699e93f214f93454badf2b835a49ffde, type: 2}
+  - {fileID: 2100000, guid: a8c86e899094e1d4594bbad8208834c5, type: 2}
+  - {fileID: 2100000, guid: d397049e2a13c2343abde886d7ab7bca, type: 2}
+  - {fileID: 2100000, guid: b199a16b5a0655a47b6e2fe714043825, type: 2}
+  - {fileID: 2100000, guid: 8d1c6157278b18d4c97430b0e02fd8b6, type: 2}
+  luzDireccionalDir: {x: 0, y: 0, z: 0}
+  luzDireccionalColor: {x: 0, y: 0, z: 0}
+  luzPuntualPos: {x: 0, y: 0, z: 0}
+  luzPuntualColor: {x: 0, y: 0, z: 0}
+  luzSpotPos: {x: 0, y: 0, z: 0}
+  luzSpotDir: {x: 0, y: 0, z: 0}
+  luzSpotColor: {x: 0, y: 0, z: 0}
+  toggles:
+  - 0
+  - 0
+  - 0
+--- !u!4 &2004877316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004877314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.140576, y: 4.626408, z: 15.282338}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068648668
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,3 +384,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 2068648670}
+  - {fileID: 2004877316}
