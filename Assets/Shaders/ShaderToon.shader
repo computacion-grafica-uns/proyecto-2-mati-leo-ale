@@ -9,7 +9,7 @@ Shader "ShaderToon"
         
         [Header(Borde Comic)]
         _OutlineColor ("Color de Borde", Color) = (0, 0, 0, 1)
-        _OutlineWidth ("Grosor de Borde", Range(0.0, 0.05)) = 0.01
+        _OutlineWidth ("Grosor de Borde", Range(0.0, 0.5)) = 0.01
 
         [Header(Luces Base)]
         _AmbientLight ("Ambient Light", Color) = (0.2, 0.2, 0.2, 1)
@@ -68,12 +68,11 @@ Shader "ShaderToon"
 
             float _OutlineWidth;
             float4 _OutlineColor;
-            float4 _ColorBase; // Necesitamos leer la transparencia del material
+            float4 _ColorBase; 
 
             v2f vert (appdata v)
             {
                 v2f o;
-                // Inflamos el modelo en la dirección de sus normales
                 v.vertex.xyz += v.normal * _OutlineWidth;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
@@ -81,7 +80,6 @@ Shader "ShaderToon"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // El borde negro copia la transparencia del objeto principal
                 return fixed4(_OutlineColor.rgb, _ColorBase.a);
             }
             ENDCG
@@ -179,7 +177,6 @@ Shader "ShaderToon"
                 float3 L = toPoint / dist;
                 float NdotL = max(0.0, dot(N, L));
 
-                // Usamos la misma atenuación de tu código original
                 float attenFactor = 1.0 / dist; 
                 float3 luzAtenuada = lightColor * attenFactor;
                 
@@ -206,17 +203,26 @@ Shader "ShaderToon"
             }
 
             
-            float3 GenerarTexturaProcedural(float3 worldPos)
+            float3 GenerarTexturaProcedural(float3 worldPos) //tablero de ajedrez 
             {
-                float3 color1 = float3(0.1, 0.6, 0.5); 
-                float3 color2 = float3(0.05, 0.1, 0.15);
-                float escalaPrincipal = 15.0; 
-                float escalaDistorsion = 5.0; 
-                float fuerzaDistorsion = 3.5; 
-                float perturbacion = sin(worldPos.x * escalaDistorsion) * sin(worldPos.y * escalaDistorsion);
-                float onda = sin(worldPos.z * escalaPrincipal + (perturbacion * fuerzaDistorsion));
-                float factorMezcla = onda * 0.5 + 0.5;
-                return lerp(color1, color2, factorMezcla);
+                // 1. tamaño de los cuadrados (mayor número = cuadrados más chicos)
+                float escala = 5.0;
+                
+                // 2. escalamos las coordenadas del mundo
+                float3 pos = worldPos * escala;
+                
+                // 3. sumamos los números enteros (floor) de las coordenadas X, Y, Z
+                float suma = floor(pos.x) + floor(pos.y) + floor(pos.z);
+                
+                // 4. par o impar
+                float esImpar = step(0.5, frac(suma * 0.5));
+                
+                // 5. definimos los dos colores del tablero
+                float3 colorMaderaClarito = float3(0.8, 0.6, 0.4); // Marrón claro/caramelo
+                float3 colorMaderaOscuro = float3(0.3, 0.15, 0.05); // Marrón muy oscuro/café
+                
+                // 6. asignamos el color dependiendo de la casilla
+                return lerp(colorMaderaClarito, colorMaderaOscuro, esImpar);
             }
 
             // --- VÉRTICE Y FRAGMENTO ---
@@ -263,10 +269,8 @@ Shader "ShaderToon"
                     N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z);
                 #endif
 
-                // 3. Vector de Vista
                 float3 V = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
 
-                // 4. Calculamos todas las luces sumadas
                 float3 contribAmbient = _AmbientLight.rgb * baseColor;
                 float3 contribDir = CalcularDireccionalToon(N, V, _DirLightDirection.xyz, _DirLightColor.rgb, baseColor) * _EnableDirLight;
                 float3 contribPoint = CalcularPuntualToon(N, V, i.worldPos, _PointLightPosition.xyz, _PointLightColor.rgb, baseColor) * _EnablePointLight;
@@ -274,7 +278,6 @@ Shader "ShaderToon"
                 
                 float3 finalColor = contribAmbient + contribDir + contribPoint + contribSpot;
 
-                // Devolvemos el color calculado + la transparencia final calculada arriba
                 return fixed4(finalColor, alphaFinal);
             }
             ENDCG
