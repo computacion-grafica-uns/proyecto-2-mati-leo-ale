@@ -29,14 +29,14 @@ Shader "Cook-Torrance"
 
         [Toggle(USE_NORMAL_MAP)] _UseNormalMap("Use Normal Map", Float) = 0
         _NormalMap("Normal Map", 2D) = "bump" {}
+        _NormalStrength("Normal Strength", Range(0.0, 3.0)) = 1.0
 
         [Toggle(USE_PROCEDURAL)] _UseProcedural("Use Procedural Texture", Float) = 0
     }
 
     SubShader
     {
-        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-        Blend SrcAlpha OneMinusSrcAlpha
+        Tags { "Queue"="Geometry" "RenderType"="Opaque" }
         Pass
         {
             CGPROGRAM
@@ -87,6 +87,7 @@ Shader "Cook-Torrance"
 
             sampler2D _MainTex;
             sampler2D _NormalMap;
+            float _NormalStrength;
 
             float3 F_Schlick(float3 V, float3 H)
             {
@@ -139,10 +140,10 @@ Shader "Cook-Torrance"
             {
                 float3 L = normalize(-lightDir);
                 float3 H = normalize(L + V);
-                float NdotL = max(0.0, dot(N, L));
+                float NdotL = dot(N, L);
 
-                float3 diffuse = baseColor * NdotL;
-                float3 specular = CalcularEspecular(V, H, L, N);
+                float3 diffuse = baseColor * smoothstep(-0.2, 0.2, NdotL);
+                float3 specular = CalcularEspecular(V, H, L, N) * smoothstep(-0.2, 0.2, NdotL);
 
                 return lightColor * (diffuse + specular);
             }
@@ -154,10 +155,10 @@ Shader "Cook-Torrance"
                 float3 L = toPoint / dist;
                 float3 H = normalize(L + V);
                 
-                float NdotL = max(0.0, dot(N, L));
+                float NdotL = dot(N, L);
 
                 float attenFactor = 1.0 / dist;
-                float3 diffuse = baseColor * NdotL;
+                float3 diffuse = baseColor * smoothstep(-0.2, 0.2, NdotL);
                 float3 specular = CalcularEspecular(V, H, L, N);
                 
                 return lightColor * attenFactor * (diffuse + specular);
@@ -170,7 +171,7 @@ Shader "Cook-Torrance"
                 float3 L = toPoint / dist;
                 float3 H = normalize(L + V);
                 
-                float NdotL = max(0.0, dot(N, L));
+                float NdotL = dot(N, L);
                 
                 float3 sDir = normalize(-lightDir);
                 float currentCos = dot(L, sDir);
@@ -179,7 +180,7 @@ Shader "Cook-Torrance"
                 float spotIntensity = smoothstep(aperturaCos, aperturaCos + 0.05, currentCos);
                 float attenFactor = 1.0 / dist;
                 
-                float3 diffuse = baseColor * NdotL;
+                float3 diffuse = baseColor * smoothstep(-0.2, 0.2, NdotL);
                 float3 specular = CalcularEspecular(V, H, L, N);
                 
                 return lightColor * attenFactor * spotIntensity * (diffuse + specular);
@@ -235,13 +236,13 @@ Shader "Cook-Torrance"
                 float3 N = normalize(i.worldNormal);
 
                 #if USE_NORMAL_MAP
-                    // Leemos el color del normal map y lo convertimos a un vector de dirección [-1, 1]
                     float3 tangentNormal = UnpackNormal(tex2D(_NormalMap, i.uv));
-    
+                    tangentNormal.xy *= _NormalStrength;
+                    tangentNormal = normalize(tangentNormal);
+
                     float3 T = normalize(i.worldTangent);
                     float3 B = normalize(i.worldBitangent);
     
-                    // Multiplicamos el vector de la textura por la matriz TBN para perturbar la normal 'N'
                     N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z);
                 #endif
 

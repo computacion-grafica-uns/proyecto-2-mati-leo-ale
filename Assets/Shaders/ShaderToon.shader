@@ -34,23 +34,18 @@ Shader "ShaderToon"
 
         [Toggle(USE_NORMAL_MAP)] _UseNormalMap("Use Normal Map", Float) = 0
         _NormalMap("Normal Map", 2D) = "bump" {}
+        _NormalStrength("Normal Strength", Range(0.0, 3.0)) = 1.0
 
         [Toggle(USE_PROCEDURAL)] _UseProcedural("Use Procedural Texture", Float) = 0
     }
 
     SubShader
     {
-        // Configuramos transparencia general para todo el shader
-        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-        Blend SrcAlpha OneMinusSrcAlpha
-        
-        // ==========================================
-        // PASS 1: BORDE NEGRO DE CÓMIC (OUTLINE)
-        // ==========================================
+        Tags { "Queue"="Geometry" "RenderType"="Opaque" }
         Pass
         {
             Name "OUTLINE"
-            Cull Front // Dibujamos solo la cara interna (al inflar, se ve como borde)
+            Cull Front
             
             CGPROGRAM
             #pragma vertex vert
@@ -85,9 +80,6 @@ Shader "ShaderToon"
             ENDCG
         }
 
-        // ==========================================
-        // PASS 2: COLOR TOON E ILUMINACIÓN
-        // ==========================================
         Pass
         {
             Name "FORWARD"
@@ -144,8 +136,7 @@ Shader "ShaderToon"
             // Texturas
             sampler2D _MainTex;
             sampler2D _NormalMap;
-
-            // --- FUNCIONES MATEMÁTICAS TOON ---
+            float _NormalStrength;
 
             // Función para cortar cualquier luz en "bandas" y agregarle brillo blanco si es metal
             float3 AplicarEstiloToon(float NdotL, float3 lightColor, float3 baseColor, float3 V, float3 L, float3 N)
@@ -190,7 +181,6 @@ Shader "ShaderToon"
                 float3 L = toPoint / dist;
                 float NdotL = max(0.0, dot(N, L));
 
-                // Matemáticas del cono de luz
                 float3 sDir = normalize(-lightDir);
                 float currentCos = dot(L, sDir);
                 float aperturaCos = cos(radians(apertura));
@@ -203,29 +193,21 @@ Shader "ShaderToon"
             }
 
             
-            float3 GenerarTexturaProcedural(float3 worldPos) //tablero de ajedrez 
+            float3 GenerarTexturaProcedural(float3 worldPos) 
             {
-                // 1. tamaño de los cuadrados (mayor número = cuadrados más chicos)
                 float escala = 5.0;
                 
-                // 2. escalamos las coordenadas del mundo
                 float3 pos = worldPos * escala;
                 
-                // 3. sumamos los números enteros (floor) de las coordenadas X, Y, Z
                 float suma = floor(pos.x) + floor(pos.y) + floor(pos.z);
                 
-                // 4. par o impar
                 float esImpar = step(0.5, frac(suma * 0.5));
                 
-                // 5. definimos los dos colores del tablero
                 float3 colorMaderaClarito = float3(0.8, 0.6, 0.4); // Marrón claro/caramelo
                 float3 colorMaderaOscuro = float3(0.3, 0.15, 0.05); // Marrón muy oscuro/café
                 
-                // 6. asignamos el color dependiendo de la casilla
                 return lerp(colorMaderaClarito, colorMaderaOscuro, esImpar);
             }
-
-            // --- VÉRTICE Y FRAGMENTO ---
 
             v2f vert(appdata v)
             {
@@ -264,9 +246,13 @@ Shader "ShaderToon"
 
                 #if USE_NORMAL_MAP
                     float3 tangentNormal = UnpackNormal(tex2D(_NormalMap, i.uv));
+                    tangentNormal.xy *= _NormalStrength;
+                    tangentNormal = normalize(tangentNormal);
+
                     float3 T = normalize(i.worldTangent);
                     float3 B = normalize(i.worldBitangent);
-                    N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z);
+    
+                    N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z); 
                 #endif
 
                 float3 V = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
