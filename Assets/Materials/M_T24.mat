@@ -101,9 +101,9 @@ Material:
     - _Ka: {r: 0, g: 0, b: 0, a: 1}
     - _Kd: {r: 0.3433962, g: 0.33367744, b: 0.33367744, a: 1}
     - _Ks: {r: 1, g: 1, b: 1, a: 1}
-    - _PointLightColor: {r: 0, g: 0, b: 0, a: 0}
-    - _PointLightPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
+    - _PointLightPosition: {r: 11.37, g: 6.42, b: -1.17, a: 0}
     - _SpotLightColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpotLightDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _SpotLightPosition: {r: 0.61, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

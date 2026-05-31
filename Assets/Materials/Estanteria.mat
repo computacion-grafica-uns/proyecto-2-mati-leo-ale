@@ -15,8 +15,6 @@ Material:
   - USE_ALBEDO_MAP
   m_InvalidKeywords:
   - _ENABLEDIRLIGHT_ON
-  - _ENABLEPOINTLIGHT_ON
-  - _ENABLESPOTLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,8 +73,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableDirLight: 1
-    - _EnablePointLight: 1
-    - _EnableSpotLight: 1
+    - _EnablePointLight: 0
+    - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
