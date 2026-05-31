@@ -1,4 +1,4 @@
-Shader "Blinn-Phong"
+Shader "Blinn-Phong-Transparente"
 {
     Properties
     {
@@ -28,14 +28,15 @@ Shader "Blinn-Phong"
 
         [Toggle(USE_NORMAL_MAP)] _UseNormalMap("Use Normal Map", Float) = 0
         _NormalMap("Normal Map", 2D) = "bump" {}
-        _NormalStrength("Normal Strength", Range(0.0, 3.0)) = 1.0
 
         [Toggle(USE_PROCEDURAL)] _UseProcedural("Use Procedural Texture", Float) = 0
     }
 
     SubShader
     {
-        Tags { "Queue"="Geometry" "RenderType"="Opaque" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
         Pass
         {
             CGPROGRAM
@@ -86,7 +87,6 @@ Shader "Blinn-Phong"
 
             sampler2D _MainTex;
             sampler2D _NormalMap;
-            float _NormalStrength;
 
             // Blinn-Phong para luz direccional
             float3 CalcularDireccional(float3 N, float3 V, float3 lightDir, float3 lightColor, float3 baseColor)
@@ -222,13 +222,13 @@ Shader "Blinn-Phong"
                 float3 N = normalize(i.worldNormal);
 
                 #if USE_NORMAL_MAP
+                    // Leemos el color del normal map y lo convertimos a un vector de dirección [-1, 1]
                     float3 tangentNormal = UnpackNormal(tex2D(_NormalMap, i.uv));
-                    tangentNormal.xy *= _NormalStrength;
-                    tangentNormal = normalize(tangentNormal);
-
+    
                     float3 T = normalize(i.worldTangent);
                     float3 B = normalize(i.worldBitangent);
     
+                    // Multiplicamos el vector de la textura por la matriz TBN para perturbar la normal 'N'
                     N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z);
                 #endif
 

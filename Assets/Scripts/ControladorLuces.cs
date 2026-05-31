@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ControladorLuces : MonoBehaviour
 {
+    public Transform luzDireccionalObj;
+    public Transform luzPuntualObj;
+    public Transform luzSpotObj;
+
     public Material[] materiales;
     public Vector3 luzDireccionalDir;
     public Color luzDireccionalColor;
@@ -25,9 +29,24 @@ public class ControladorLuces : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (luzDireccionalObj != null)
+        {
+            luzDireccionalDir = luzDireccionalObj.up; 
+        }
+
+        if (luzPuntualObj != null)
+        {
+            luzPuntualPos = luzPuntualObj.position;
+        }
+
+        if (luzSpotObj != null)
+        {
+            luzSpotPos = luzSpotObj.position;
+            luzSpotDir = luzSpotObj.up;
+        }
+
         foreach(Material mat in materiales)
         {
             mat.SetVector("_PointLightPosition", luzPuntualPos);

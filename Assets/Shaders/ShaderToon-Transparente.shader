@@ -1,4 +1,4 @@
-Shader "ShaderToon"
+Shader "ShaderToon-Transparente"
 {
     Properties
     {
@@ -34,14 +34,15 @@ Shader "ShaderToon"
 
         [Toggle(USE_NORMAL_MAP)] _UseNormalMap("Use Normal Map", Float) = 0
         _NormalMap("Normal Map", 2D) = "bump" {}
-        _NormalStrength("Normal Strength", Range(0.0, 3.0)) = 1.0
 
         [Toggle(USE_PROCEDURAL)] _UseProcedural("Use Procedural Texture", Float) = 0
     }
 
     SubShader
     {
-        Tags { "Queue"="Geometry" "RenderType"="Opaque" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
         Pass
         {
             Name "OUTLINE"
@@ -136,7 +137,6 @@ Shader "ShaderToon"
             // Texturas
             sampler2D _MainTex;
             sampler2D _NormalMap;
-            float _NormalStrength;
 
             // Función para cortar cualquier luz en "bandas" y agregarle brillo blanco si es metal
             float3 AplicarEstiloToon(float NdotL, float3 lightColor, float3 baseColor, float3 V, float3 L, float3 N)
@@ -246,13 +246,9 @@ Shader "ShaderToon"
 
                 #if USE_NORMAL_MAP
                     float3 tangentNormal = UnpackNormal(tex2D(_NormalMap, i.uv));
-                    tangentNormal.xy *= _NormalStrength;
-                    tangentNormal = normalize(tangentNormal);
-
                     float3 T = normalize(i.worldTangent);
                     float3 B = normalize(i.worldBitangent);
-    
-                    N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z); 
+                    N = normalize(T * tangentNormal.x + B * tangentNormal.y + N * tangentNormal.z);
                 #endif
 
                 float3 V = normalize(_WorldSpaceCameraPos.xyz - i.worldPos.xyz);
