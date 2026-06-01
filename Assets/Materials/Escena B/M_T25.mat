@@ -15,7 +15,6 @@ Material:
   - USE_NORMAL_MAP
   m_InvalidKeywords:
   - _ENABLEDIRLIGHT_ON
-  - _ENABLEPOINTLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -76,14 +75,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableDirLight: 1
-    - _EnablePointLight: 1
+    - _EnablePointLight: 0
     - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NormalStrength: 0.45
+    - _NormalStrength: 0.39
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.01
     - _Parallax: 0.02
@@ -103,16 +102,16 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorBase: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _DirLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _DirLightDirection: {r: 0, g: -1, b: -1.02, a: 0}
+    - _DirLightDirection: {r: -0.21500272, g: -0.64950484, b: 12.27, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _F0: {r: 0.4, g: 0.4, b: 0.4, a: 1}
     - _Ka: {r: 0, g: 0, b: 0, a: 1}
-    - _Kd: {r: 0.6377357, g: 0.2764125, b: 0.09505865, a: 1}
+    - _Kd: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
     - _Ks: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PointLightPosition: {r: 10.3, g: 6.42, b: -1.17, a: 0}
-    - _SpotLightColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightPosition: {r: 0.61, g: 0, b: 0, a: 0}
+    - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
+    - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
+    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
   m_BuildTextureStacks: []

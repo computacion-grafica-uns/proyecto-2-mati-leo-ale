@@ -96,14 +96,14 @@ Material:
     - _AmbientLight: {r: 0.09999997, g: 0.09999997, b: 0.09999997, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DirLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _DirLightDirection: {r: 0, g: -1, b: 1, a: 0}
+    - _DirLightDirection: {r: -0.21500272, g: -0.64950484, b: 0.7293265, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Ka: {r: 0, g: 0, b: 0, a: 1}
     - _Kd: {r: 0.6415094, g: 0.05119753, b: 0, a: 1}
     - _Ks: {r: 0.774597, g: 0.458561, b: 0.20062, a: 1}
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PointLightPosition: {r: 11.37, g: 6.42, b: -1.17, a: 0}
-    - _SpotLightColor: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _SpotLightPosition: {r: 0.61, g: 0, b: 0, a: 0}
+    - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
+    - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
+    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
   m_BuildTextureStacks: []

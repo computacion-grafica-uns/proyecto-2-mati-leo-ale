@@ -188,8 +188,9 @@ Shader "Cook-Torrance"
 
             float3 GenerarTexturaProcedural(float3 worldPos)
             {
-                float3 color1 = float3(0.1, 0.6, 0.5); 
-                float3 color2 = float3(0.05, 0.1, 0.15);
+                //(1, 0.16, 0.62)
+                float3 color1 = float3(0.38, 0, 0);
+                float3 color2 = float3(0, 0, 0);
 
                 float escalaPrincipal = 15.0; 
                 float escalaDistorsion = 5.0; 
