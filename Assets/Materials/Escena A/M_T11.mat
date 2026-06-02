@@ -35,8 +35,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Aperture: 0
-    - _EnableDirLight: 1
-    - _EnablePointLight: 0
+    - _EnableDirLight: 0
+    - _EnablePointLight: 1
     - _EnableSpotLight: 0
     - _NormalStrength: 1
     - _UseAlbedoMap: 0
@@ -51,7 +51,7 @@ Material:
     - _Ka: {r: 0.1, g: 0.1, b: 0.1, a: 1}
     - _Kd: {r: 0.3509434, g: 0.3509434, b: 0.3509434, a: 1}
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
+    - _PointLightPosition: {r: 5.7, g: 7.39, b: -2.68, a: 0}
     - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
     - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
