@@ -193,20 +193,23 @@ Shader "ShaderToon"
             }
 
             
-            float3 GenerarTexturaProcedural(float3 worldPos) 
+            float3 GenerarTexturaProcedural(float3 worldPos)
             {
-                float escala = 5.0;
+   
+                float3 localPos = mul(unity_WorldToObject, float4(worldPos, 1.0)).xyz;
                 
-                float3 pos = worldPos * escala;
+                float escala = 0.8; 
                 
-                float suma = floor(pos.x) + floor(pos.y) + floor(pos.z);
+                // 3. Calculamos la grilla usando X y Z locales
+                float suma = floor(localPos.x * escala) + floor(localPos.z * escala);
                 
-                float esImpar = step(0.5, frac(suma * 0.5));
+                // 4. Par o impar 
+                float factorCasilla = step(0.5, fmod(abs(suma), 2.0));
                 
-                float3 colorMaderaClarito = float3(0.8, 0.6, 0.4); // Marrón claro/caramelo
-                float3 colorMaderaOscuro = float3(0.3, 0.15, 0.05); // Marrón muy oscuro/café
+                float3 colorMaderaClarito = float3(0.8, 0.6, 0.4);
+                float3 colorMaderaOscuro = float3(0.3, 0.15, 0.05);
                 
-                return lerp(colorMaderaClarito, colorMaderaOscuro, esImpar);
+                return lerp(colorMaderaClarito, colorMaderaOscuro, factorCasilla);
             }
 
             v2f vert(appdata v)

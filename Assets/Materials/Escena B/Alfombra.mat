@@ -11,9 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 983166da9fd01a448a68b5c751c27983, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - USE_ALBEDO_MAP
-  - USE_NORMAL_MAP
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ENABLEDIRLIGHT_ON
   - _ENABLEPOINTLIGHT_ON
@@ -93,8 +91,8 @@ Material:
     - _SrcBlend: 1
     - _Steps: 3
     - _UVSec: 0
-    - _UseAlbedoMap: 1
-    - _UseNormalMap: 1
+    - _UseAlbedoMap: 0
+    - _UseNormalMap: 0
     - _UseProcedural: 0
     - _ZWrite: 1
     - _n: 1
