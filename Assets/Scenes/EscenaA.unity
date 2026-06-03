@@ -3670,9 +3670,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfb1d33d0aa2d14592c3a0fad877e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camaraOrbitalObj: {fileID: 963194225}
+  jugadorFPSObj: {fileID: 0}
   camaraOrbital: {fileID: 963194230}
   centroEscena: {x: 7.7, y: 3.58, z: 0.48}
-  teteras:
+  objetosDestacados:
   - {fileID: 607373987}
   - {fileID: 1894109703}
   - {fileID: 716038841}
