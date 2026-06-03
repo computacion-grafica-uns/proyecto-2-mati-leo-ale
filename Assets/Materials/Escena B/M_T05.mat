@@ -67,21 +67,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Aperture: 0
+    - _Aperture: 62
     - _BrilloMetalico: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableDirLight: 1
-    - _EnablePointLight: 0
+    - _EnableDirLight: 0
+    - _EnablePointLight: 1
     - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NormalStrength: 0.14
+    - _NormalStrength: 0.29
     - _OcclusionStrength: 1
     - _OutlineWidth: 0.03
     - _Parallax: 0.02
@@ -97,14 +97,14 @@ Material:
     m_Colors:
     - _AmbientLight: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorBase: {r: 0.4716981, g: 0.08531528, b: 0.05562477, a: 1}
-    - _DirLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _DirLightDirection: {r: -0.21500272, g: -0.64950484, b: 0.7293265, a: 0}
+    - _ColorBase: {r: 0.47058824, g: 0.08627451, b: 0.05490196, a: 1}
+    - _DirLightColor: {r: 0.9019608, g: 0.39215687, b: 0.07450981, a: 0}
+    - _DirLightDirection: {r: 0, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
-    - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
-    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
+    - _PointLightPosition: {r: 1.038, g: 2.326, b: -0.53, a: 0}
+    - _SpotLightColor: {r: 0.8627451, g: 0.69803923, b: 0.4862745, a: 0}
+    - _SpotLightDirection: {r: 0.80954486, g: -0.58705795, b: 0, a: 0}
+    - _SpotLightPosition: {r: 4.57, g: 3.56, b: -0.44, a: 0}
   m_BuildTextureStacks: []

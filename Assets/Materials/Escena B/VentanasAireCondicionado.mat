@@ -7,14 +7,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: retro
-  m_Shader: {fileID: 108, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: VentanasAireCondicionado
+  m_Shader: {fileID: 4800000, guid: 1e7171d75e4c9224791cdb9962de44d2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - USE_ALBEDO_MAP
   m_InvalidKeywords:
-  - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
-  m_LightmapFlags: 6
+  - _ENABLEDIRLIGHT_ON
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -45,10 +46,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 87f350f6fa9f9eb41b290fe68fe927ba, type: 3}
+        m_Texture: {fileID: 2800000, guid: c79963a1bdf84c34bb8a5c44c18a85c1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -62,30 +67,43 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Aperture: 62
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 1
+    - _EnableDirLight: 0
+    - _EnablePointLight: 1
+    - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _ImageType: 0
-    - _Layout: 0
-    - _Mapping: 1
     - _Metallic: 0
-    - _MirrorOnBack: 0
     - _Mode: 0
+    - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Rotation: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseAlbedoMap: 1
+    - _UseNormalMap: 0
+    - _UseProcedural: 0
     - _ZWrite: 1
+    - _rp: 0.486
     m_Colors:
+    - _AmbientLight: {r: 0.09999997, g: 0.09999997, b: 0.09999997, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DirLightColor: {r: 0.9019608, g: 0.39215687, b: 0.07450981, a: 0}
+    - _DirLightDirection: {r: 0, g: -1, b: -1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _F0: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    - _Ka: {r: 0, g: 0, b: 0, a: 1}
+    - _Kd: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
+    - _PointLightPosition: {r: 1.038, g: 2.326, b: -0.53, a: 0}
+    - _SpotLightColor: {r: 0.8627451, g: 0.69803923, b: 0.4862745, a: 0}
+    - _SpotLightDirection: {r: 0.80954486, g: -0.58705795, b: 0, a: 0}
+    - _SpotLightPosition: {r: 4.57, g: 3.56, b: -0.44, a: 0}
   m_BuildTextureStacks: []
