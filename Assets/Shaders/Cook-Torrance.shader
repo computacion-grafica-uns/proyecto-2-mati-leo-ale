@@ -142,8 +142,8 @@ Shader "Cook-Torrance"
                 float3 H = normalize(L + V);
                 float NdotL = dot(N, L);
 
-                float3 diffuse = baseColor * smoothstep(-0.2, 0.2, NdotL);
-                float3 specular = CalcularEspecular(V, H, L, N) * smoothstep(-0.2, 0.2, NdotL);
+                float3 diffuse = baseColor * smoothstep(-0.11, 0.22, NdotL);
+                float3 specular = CalcularEspecular(V, H, L, N) * smoothstep(-0.11, 0.22, NdotL);
 
                 return lightColor * (diffuse + specular);
             }

@@ -36,7 +36,6 @@ Shader "Blinn-Phong-Transparente"
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
         Pass
         {
             CGPROGRAM

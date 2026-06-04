@@ -16,21 +16,40 @@ public class ControladorLuces : MonoBehaviour
     public Color luzPuntualColor;
     public Vector3 luzSpotPos;
     public Vector3 luzSpotDir;
-    public Color luzSpotColor;
+    public Color luzSpotColor; 
     [Range(0f, 90f)]
     public float luzSpotAperture = 30.0f;
 
+    [Header("Interruptores")]
     public bool luzDireccionalActiva = true;
     public bool luzPuntualActiva = true;
     public bool luzSpotActiva = true;
 
+    [Header("Efecto RGB")]
+    public bool efectoRGBActivo = false;
+    public float velocidadRGB = 0.15f;
+    private Color colorSpotOriginal;
+
     void Start()
     {
-        
+        colorSpotOriginal = luzSpotColor;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            efectoRGBActivo = !efectoRGBActivo;
+            
+            if (!efectoRGBActivo) luzSpotColor = colorSpotOriginal;
+        }
+
+        if (efectoRGBActivo)
+        {
+            float matiz = Mathf.Repeat(Time.time * velocidadRGB, 1f);
+            luzSpotColor = Color.HSVToRGB(matiz, 1f, 1f);
+        }
+
         if (luzDireccionalObj != null)
         {
             luzDireccionalDir = luzDireccionalObj.up; 
@@ -53,7 +72,7 @@ public class ControladorLuces : MonoBehaviour
             mat.SetVector("_PointLightColor", luzPuntualColor);
             mat.SetVector("_SpotLightPosition", luzSpotPos);
             mat.SetVector("_SpotLightDirection", luzSpotDir);
-            mat.SetVector("_SpotLightColor", luzSpotColor);
+            mat.SetVector("_SpotLightColor", luzSpotColor); 
             mat.SetFloat("_Aperture", luzSpotAperture);
             mat.SetVector("_DirLightDirection", luzDireccionalDir);
             mat.SetVector("_DirLightColor", luzDireccionalColor);

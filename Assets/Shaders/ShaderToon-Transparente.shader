@@ -42,7 +42,6 @@ Shader "ShaderToon-Transparente"
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
         Pass
         {
             Name "OUTLINE"

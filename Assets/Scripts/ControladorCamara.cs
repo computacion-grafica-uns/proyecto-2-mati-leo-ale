@@ -1,39 +1,3 @@
-/*using System.Collections.Generic;
-using UnityEngine;
-
-public class ControladorCamara : MonoBehaviour
-{
-    public CamaraOrbital camaraOrbital;
-    public Vector3 centroEscena;
-    public List<Transform> objetosDestacados = new List<Transform>();
-    private int indiceActual = -1; 
-
-    void Update()
-    {
-        if (objetosDestacados.Count == 0) return;
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            indiceActual++;
-            if (indiceActual >= objetosDestacados.Count) indiceActual = 0; 
-            camaraOrbital.CambiarObjetivo(objetosDestacados[indiceActual].position, 4f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            indiceActual--;
-            if (indiceActual < 0) indiceActual = objetosDestacados.Count - 1; 
-            camaraOrbital.CambiarObjetivo(objetosDestacados[indiceActual].position, 4f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            indiceActual = -1; 
-            camaraOrbital.CambiarObjetivo(centroEscena, 15f); 
-        }
-    }
-}*/
-
 using System.Collections.Generic;
 using UnityEngine;
 
