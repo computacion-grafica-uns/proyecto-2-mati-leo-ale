@@ -14,7 +14,7 @@ Material:
   m_ValidKeywords:
   - USE_ALBEDO_MAP
   m_InvalidKeywords:
-  - _ENABLEPOINTLIGHT_ON
+  - _ENABLESPOTLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -73,8 +73,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableDirLight: 0
-    - _EnablePointLight: 1
+    - _EnableDirLight: 1
+    - _EnablePointLight: 0
     - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -106,5 +106,5 @@ Material:
     - _PointLightPosition: {r: 1.038, g: 2.326, b: -0.53, a: 0}
     - _SpotLightColor: {r: 0.8627451, g: 0.69803923, b: 0.4862745, a: 0}
     - _SpotLightDirection: {r: 0.80954486, g: -0.58705795, b: 0, a: 0}
-    - _SpotLightPosition: {r: 4.57, g: 3.56, b: -0.44, a: 0}
+    - _SpotLightPosition: {r: 4.29, g: 3.56, b: -0.44, a: 0}
   m_BuildTextureStacks: []
