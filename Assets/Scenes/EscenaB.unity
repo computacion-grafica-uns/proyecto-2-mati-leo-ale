@@ -159,18 +159,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 64b77a68d67160c4c9b79f6089abebd4, type: 2}
   - {fileID: 2100000, guid: fbded75bea880f44abe88a7211e214ee, type: 2}
   - {fileID: 2100000, guid: 3ad399286bc7a7741952135faa63872d, type: 2}
+  - {fileID: 2100000, guid: da1732b6ca8ec70418ca75a546f1a042, type: 2}
   - {fileID: 2100000, guid: e0d9c9341d825214bbd77997b2bc206d, type: 2}
   - {fileID: 2100000, guid: e5aeae56a2acd324c8d48c08f10dc9a9, type: 2}
   - {fileID: 2100000, guid: 98dfb3ea8593a2d47b77176aa495aaec, type: 2}
+  - {fileID: 2100000, guid: 9fc237597965d3e47b2dfe7d7365e613, type: 2}
   - {fileID: 2100000, guid: 4754f73e3d9979a43aa14a6d0c722974, type: 2}
   - {fileID: 2100000, guid: 576f791eb13b6914694ff887aafcae5a, type: 2}
+  - {fileID: 2100000, guid: 9c86b38df6ccabb4380a9a1db1913fe0, type: 2}
+  - {fileID: 2100000, guid: f6ca4e94bd8b64f479576b540a75b588, type: 2}
   - {fileID: 2100000, guid: f4ac7064265d8a443b9f171b7bb26e60, type: 2}
   - {fileID: 2100000, guid: e8596e430286ec546bc884262154ff59, type: 2}
   - {fileID: 2100000, guid: f7607318a3050374c8f1349378a0c901, type: 2}
   - {fileID: 2100000, guid: cdacbb3346bcccb48b9657573e2761eb, type: 2}
   - {fileID: 2100000, guid: 23ad1415292477b478dd1d69926d4728, type: 2}
   - {fileID: 2100000, guid: 04d344ebfc6850e4ab401a6995db7771, type: 2}
+  - {fileID: 2100000, guid: 629d410e7f6e63942a33962220c392f9, type: 2}
+  - {fileID: 2100000, guid: 619f6f09baef3a24dbc386a88f8f886b, type: 2}
   - {fileID: 2100000, guid: b1284fa56ec525145a4b79fe3032a863, type: 2}
+  - {fileID: 2100000, guid: 92c308e48ad2f584ebf9b77fd31b650d, type: 2}
   - {fileID: 2100000, guid: 9d4e2c63c154a9546a8cf12156a2733e, type: 2}
   - {fileID: 2100000, guid: 88ee3a20eaf619f44a0efd68ab94a372, type: 2}
   - {fileID: 2100000, guid: 6ff7bc719b2cb7d4d800a7dd8ce5d759, type: 2}
@@ -196,16 +203,17 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 30a4979829d76ff42a3741f68a91bec6, type: 2}
   - {fileID: 2100000, guid: b07e2535d43bbfd4398182ed43bab283, type: 2}
   - {fileID: 2100000, guid: dd8784eedba1ac94fbd02cb24f572e14, type: 2}
+  - {fileID: 2100000, guid: 6fcd67821fa80164d86197037279bdd5, type: 2}
   - {fileID: 2100000, guid: 281a6bdd7f3132844a9d23310f1d2a29, type: 2}
   - {fileID: 2100000, guid: 1e71fc382a5bff34e90d2f2b7db5f0e7, type: 2}
   - {fileID: 2100000, guid: 5dc55db47f803cb4db564dd76e3247b7, type: 2}
   - {fileID: 2100000, guid: 6e6dfa1e9a5e9d04fb0c8698941978da, type: 2}
   - {fileID: 2100000, guid: 5125210fad18c1844868b918d238b903, type: 2}
+  - {fileID: 2100000, guid: ec185e18eee52574392865f88ab20d83, type: 2}
   - {fileID: 2100000, guid: c5df4c5301a7fab4ea581cf1b585069e, type: 2}
   - {fileID: 2100000, guid: ae701735ffd30dc4f8f981ce64529739, type: 2}
   - {fileID: 2100000, guid: 773dd7212a99c7c4c97fdabbfcebabb9, type: 2}
   - {fileID: 2100000, guid: ab7125c9ffbcded43a4d65c20fd2dd2b, type: 2}
-  - {fileID: 2100000, guid: 619f6f09baef3a24dbc386a88f8f886b, type: 2}
   luzDireccionalDir: {x: 0, y: -1, z: -1}
   luzDireccionalColor: {r: 0.9019608, g: 0.39215687, b: 0.07450981, a: 0}
   luzPuntualPos: {x: 1.038, y: 2.326, z: -0.53}
@@ -1492,11 +1500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa9bb84ef5fa3d945b002312e077caad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.386874
+      value: 11.694
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa9bb84ef5fa3d945b002312e077caad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1170006
+      value: 1.117
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa9bb84ef5fa3d945b002312e077caad, type: 3}
       propertyPath: m_LocalRotation.w

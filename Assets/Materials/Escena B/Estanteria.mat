@@ -15,7 +15,7 @@ Material:
   - USE_ALBEDO_MAP
   - USE_NORMAL_MAP
   m_InvalidKeywords:
-  - _ENABLESPOTLIGHT_ON
+  - _ENABLEDIRLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
