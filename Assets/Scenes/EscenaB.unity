@@ -1755,35 +1755,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.629
+      value: 17.620548
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.858
+      value: 8.851806
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.758
+      value: 0.7580004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.32579875
+      value: -0.6370371
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.32579875
+      value: -0.6370371
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.62757885
+      value: 0.30689374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.62757885
+      value: 0.30689374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -35.129
+      value: -218.555
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d0f08cc121f6904081cbccf5604efce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -10158,8 +10158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5814646760645149562, guid: b13bb30f9ba67d2468fe8bf62983e471, type: 3}
-  - {fileID: 3092439742945511283, guid: b13bb30f9ba67d2468fe8bf62983e471, type: 3}
+  - {fileID: 2100000, guid: 6ff7bc719b2cb7d4d800a7dd8ce5d759, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
