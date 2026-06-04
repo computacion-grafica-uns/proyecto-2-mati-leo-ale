@@ -72,8 +72,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EnableDirLight: 0
-    - _EnablePointLight: 1
+    - _EnableDirLight: 1
+    - _EnablePointLight: 0
     - _EnableSpotLight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
