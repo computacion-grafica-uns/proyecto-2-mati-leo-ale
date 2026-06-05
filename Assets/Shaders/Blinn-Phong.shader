@@ -22,6 +22,12 @@ Shader "Blinn-Phong"
         [HDR] _SpotLightColor ("Spot Light Color", Color) = (1, 1, 1, 1)
         _Aperture("Apertura", Range(0.0, 90)) = 30.0
 
+        [Toggle] _EnableSpotLight2 ("Enable Spot Light 2", Float) = 1
+        _SpotLightPosition2 ("Spot Light Position 2", Vector) = (0, 3, 0, 1)
+        _SpotLightDirection2 ("Spot Light Direction 2", Vector) = (0, -1, 0, 0)
+        [HDR] _SpotLightColor2 ("Spot Light Color 2", Color) = (1, 1, 1, 1)
+        _Aperture2("Aperture 2", Range(0.0, 90)) = 30.0
+
         [Header(Texturas)]
         [Toggle(USE_ALBEDO_MAP)] _UseAlbedoMap("Use 2D Texture", Float) = 0
         _MainTex("Base Color", 2D) = "white" {}
@@ -79,10 +85,15 @@ Shader "Blinn-Phong"
             float4 _SpotLightDirection;
             float4 _SpotLightColor;
             float _Aperture;
+            float4 _SpotLightPosition2;
+            float4 _SpotLightDirection2;
+            float4 _SpotLightColor2;
+            float _Aperture2;
 
             float _EnableDirLight;
             float _EnablePointLight;
             float _EnableSpotLight;
+            float _EnableSpotLight2;
 
             sampler2D _MainTex;
             sampler2D _NormalMap;
@@ -248,8 +259,9 @@ Shader "Blinn-Phong"
                 float3 contribDir = CalcularDireccional(N, V, _DirLightDirection.xyz, _DirLightColor.rgb, colorBase) * _EnableDirLight;
                 float3 contribPoint = CalcularPuntual(N, V, i.worldPos, _PointLightPosition.xyz, _PointLightColor.rgb, colorBase) * _EnablePointLight;
                 float3 contribSpot = CalcularSpot(N, V, i.worldPos, _SpotLightPosition.xyz, _SpotLightDirection.xyz, _SpotLightColor.rgb, _Aperture, colorBase) * _EnableSpotLight;
-                
-                float3 finalColor = contribAmbient + contribDir + contribPoint + contribSpot;
+                float3 contribSpot2 = CalcularSpot(N, V, i.worldPos, _SpotLightPosition2.xyz, _SpotLightDirection2.xyz, _SpotLightColor2.rgb, _Aperture2, colorBase) * _EnableSpotLight2;
+
+                float3 finalColor = contribAmbient + contribDir + contribPoint + contribSpot + contribSpot2;
 
                 return fixed4(finalColor, _Kd.a);
             }

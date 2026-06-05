@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - _ENABLEDIRLIGHT_ON
+  - _ENABLESPOTLIGHT2_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,7 +67,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Apertura: 0.91495967
-    - _Aperture: 40.1
+    - _Aperture: 30
+    - _Aperture2: 30
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -75,6 +76,7 @@ Material:
     - _EnableDirLight: 1
     - _EnablePointLight: 0
     - _EnableSpotLight: 0
+    - _EnableSpotLight2: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -104,6 +106,9 @@ Material:
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
     - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
     - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SpotLightDirection: {r: -0.48106742, g: -0.01746631, b: 0.8765097, a: 0}
-    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -3.4, a: 0}
+    - _SpotLightColor2: {r: 1, g: 1, b: 1, a: 0}
+    - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
+    - _SpotLightDirection2: {r: -0.1513758, g: -0.14545767, b: 0.97771555, a: 0}
+    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
+    - _SpotLightPosition2: {r: 10.51, g: 4.83, b: -7.11, a: 0}
   m_BuildTextureStacks: []
