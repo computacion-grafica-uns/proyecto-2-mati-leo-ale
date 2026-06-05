@@ -26,7 +26,7 @@ public class ControladorLuces : MonoBehaviour
     public bool luzSpotActiva = true;
 
     [Header("Efecto RGB")]
-    public bool efectoRGBActivo = false;
+    private bool efectoRGBActivo = false;
     public float velocidadRGB = 0.15f;
     private Color colorSpotOriginal;
 

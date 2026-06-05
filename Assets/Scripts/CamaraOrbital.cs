@@ -39,7 +39,7 @@ public class CamaraOrbital : MonoBehaviour
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         distancia -= scroll * sensibilidadZoom;
-        distancia = Mathf.Clamp(distancia, minDistancia, maxDistancia);
+        //distancia = Mathf.Clamp(distancia, minDistancia, maxDistancia);
 
         Quaternion rotacion = Quaternion.Euler(anguloY, anguloX, 0);
         Vector3 posicion = rotacion * new Vector3(0.0f, 0.0f, -distancia) + objetivo;

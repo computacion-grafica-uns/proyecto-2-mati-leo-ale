@@ -66,7 +66,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Aperture: 0
+    - _Aperture: 40.1
     - _BrilloMetalico: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -104,6 +104,6 @@ Material:
     - _PointLightColor: {r: 1, g: 1, b: 1, a: 0}
     - _PointLightPosition: {r: 3.47, g: 7.39, b: -2.68, a: 0}
     - _SpotLightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _SpotLightDirection: {r: 0, g: 0.021266162, b: 0.99977386, a: 0}
-    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -7.11, a: 0}
+    - _SpotLightDirection: {r: -0.48106742, g: -0.01746631, b: 0.8765097, a: 0}
+    - _SpotLightPosition: {r: 7.61, g: 4.83, b: -3.4, a: 0}
   m_BuildTextureStacks: []
